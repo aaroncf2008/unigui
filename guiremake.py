@@ -48,6 +48,10 @@ def print_selection():
         text = text + ' -sC'
     else:
         pass
+    if (var6.get() == 1):
+        text = text + ' --open'
+    else:
+        pass
     text = text + ' ' + e1.get()
     text = text + ' -oA ' + d1.get()
 
@@ -58,6 +62,7 @@ var2 = tk.IntVar()
 var3 = tk.IntVar()
 var4 = tk.IntVar()
 var5 = tk.IntVar()
+var6 = tk.IntVar()
 c1 = tk.Checkbutton(tab2, text='-p-',variable=var1, onvalue=1, offvalue=0, command=print_selection, justify='center')
 c1.pack()
 c2 = tk.Checkbutton(tab2, text='-Pn',variable=var2, onvalue=1, offvalue=0, command=print_selection, justify='center')
@@ -67,6 +72,8 @@ c3.pack()
 c4 = tk.Checkbutton(tab2, text='-sV',variable=var4, onvalue=1, offvalue=0, command=print_selection, justify='center')
 c4.pack()
 c5 = tk.Checkbutton(tab2, text='-sC',variable=var5, onvalue=1, offvalue=0, command=print_selection, justify='center')
+c5.pack()
+c5 = tk.Checkbutton(tab2, text='--open',variable=var6, onvalue=1, offvalue=0, command=print_selection, justify='center')
 c5.pack()
 
 label1 = tk.Label(tab2, text = '', bg = bg, justify='center')
@@ -149,8 +156,11 @@ def sendcommand():
 label2 = tk.Label(tab2, text = '', bg = bg, justify='center')
 label2.pack()
 
-h = tk.Message(tab1, bg='white', width=1000, text='Terminal Output', justify='center')
-h.pack(fill='both', anchor='n')
+frame12 = tk.Frame(tab1)
+frame12.pack(anchor="n")
+
+h = tk.Message(frame12, bg='white', width=1000, text='Terminal Output', justify='center')
+h.pack(fill=tk.BOTH)
 def termcommand():
     command = f1.get()
     textt = cmdrun(command)
