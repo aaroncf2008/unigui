@@ -26,29 +26,30 @@ tabControl.pack()
 
 l = tk.Label(tab2, bg='white', width=40, text='nmap', justify='center')
 l.pack()
+
 def print_selection():
     text = 'nmap'
-    if (var1.get() == 1):
+    if (allport_nmap_var.get() == 1):
         text = text + ' -p-'
     else:
         pass
-    if (var2.get() == 1):
+    if (pn_nmap_var.get() == 1):
         text = text + ' -Pn'
     else:
         pass
-    if (var3.get() == 1):
+    if (t4_nmap_var.get() == 1):
         text = text + ' -T4'
     else:
         pass
-    if (var4.get() == 1):
+    if (sV_nmap_var.get() == 1):
         text = text + ' -sV'
     else:
         pass
-    if (var5.get() == 1):
+    if (sC_nmap_var.get() == 1):
         text = text + ' -sC'
     else:
         pass
-    if (var6.get() == 1):
+    if (open_nmap_var.get() == 1):
         text = text + ' --open'
     else:
         pass
@@ -57,24 +58,25 @@ def print_selection():
 
     l.config(text=text)
 
-var1 = tk.IntVar()
-var2 = tk.IntVar()
-var3 = tk.IntVar()
-var4 = tk.IntVar()
-var5 = tk.IntVar()
-var6 = tk.IntVar()
-c1 = tk.Checkbutton(tab2, text='-p-',variable=var1, onvalue=1, offvalue=0, command=print_selection, justify='center')
-c1.pack()
-c2 = tk.Checkbutton(tab2, text='-Pn',variable=var2, onvalue=1, offvalue=0, command=print_selection, justify='center')
-c2.pack()
-c3 = tk.Checkbutton(tab2, text='-T4',variable=var3, onvalue=1, offvalue=0, command=print_selection, justify='center')
-c3.pack()
-c4 = tk.Checkbutton(tab2, text='-sV',variable=var4, onvalue=1, offvalue=0, command=print_selection, justify='center')
-c4.pack()
-c5 = tk.Checkbutton(tab2, text='-sC',variable=var5, onvalue=1, offvalue=0, command=print_selection, justify='center')
-c5.pack()
-c5 = tk.Checkbutton(tab2, text='--open',variable=var6, onvalue=1, offvalue=0, command=print_selection, justify='center')
-c5.pack()
+allport_nmap_var = tk.IntVar()
+pn_nmap_var = tk.IntVar()
+t4_nmap_var = tk.IntVar()
+sV_nmap_var = tk.IntVar()
+sC_nmap_var = tk.IntVar()
+open_nmap_var = tk.IntVar()
+
+allport_nmap = tk.Checkbutton(tab2, text='-p-',variable=allport_nmap_var, onvalue=1, offvalue=0, command=print_selection, justify='center')
+allport_nmap.pack()
+pn_nmap = tk.Checkbutton(tab2, text='-Pn',variable=pn_nmap_var, onvalue=1, offvalue=0, command=print_selection, justify='center')
+pn_nmap.pack()
+t4_nmap = tk.Checkbutton(tab2, text='-T4',variable=t4_nmap_var, onvalue=1, offvalue=0, command=print_selection, justify='center')
+t4_nmap.pack()
+sV_nmap = tk.Checkbutton(tab2, text='-sV',variable=sV_nmap_var, onvalue=1, offvalue=0, command=print_selection, justify='center')
+sV_nmap.pack()
+sC_nmap = tk.Checkbutton(tab2, text='-sC',variable=sC_nmap_var, onvalue=1, offvalue=0, command=print_selection, justify='center')
+sC_nmap.pack()
+open_nmap = tk.Checkbutton(tab2, text='--open',variable=open_nmap_var, onvalue=1, offvalue=0, command=print_selection, justify='center')
+open_nmap.pack()
 
 label1 = tk.Label(tab2, text = '', bg = bg, justify='center')
 label1.pack()
@@ -124,29 +126,32 @@ def cmdrun(string):
 
 def sendcommand():
     command = 'nmap'
-    if (var1.get() == 1):
+    if (allport_nmap_var.get() == 1):
         command = command + ' -p-'
     else:
         pass
-    if (var2.get() == 1):
+    if (pn_nmap_var.get() == 1):
         command = command + ' -Pn'
     else:
         pass
-    if (var3.get() == 1):
+    if (t4_nmap_var.get() == 1):
         command = command + ' -T4'
     else:
         pass
-    if (var4.get() == 1):
+    if (sV_nmap_var.get() == 1):
         command = command + ' -sV'
     else:
         pass
-    if (var5.get() == 1):
+    if (sC_nmap_var.get() == 1):
         command = command + ' -sC'
+    else:
+        pass
+    if (open_nmap_var.get() == 1):
+        command = command + ' --open'
     else:
         pass
     command = command + ' ' + e1.get()
     command = command + ' -oA ' + d1.get()
-
     outpt = cmdrun(command)
     h3.config(text=outpt)
 
