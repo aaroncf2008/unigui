@@ -5,7 +5,7 @@ import os
 root = tk.Tk()
 root.title("Tab Widget")
 
-root.geometry('782x739')
+#root.geometry('782x739')
 fontfont = ('Verdana', 14)
 bg = '#0E0E0E'
 style = ttk.Style()
@@ -103,8 +103,8 @@ label2.pack()
 #d5 = tk.Button(tab2, text='SIZE', command=size, justify='center')
 #d5.pack()
 
-h3 = tk.Message(tab2, bg='white', width=1000, text='NMAP Scan Output', justify='center')
-h3.pack()
+h3 = tk.Message(tab2, bg='white', width=250, text='NMAP Scan Output', justify='center')
+h3.pack(fill='both', expand=True)
 
 def cmdrun(string):     
     try:         
@@ -150,7 +150,7 @@ label2 = tk.Label(tab2, text = '', bg = bg, justify='center')
 label2.pack()
 
 h = tk.Message(tab1, bg='white', width=1000, text='Terminal Output', justify='center')
-h.pack(anchor='n')
+h.pack(fill='both', anchor='n')
 def termcommand():
     command = f1.get()
     textt = cmdrun(command)
@@ -163,7 +163,7 @@ f1 = tk.Entry(tab1, justify='left', font=fontfont)
 f1.pack(side=tk.LEFT, anchor='sw')
 
 f2 = tk.Button(tab1, text='Send Command To Terminal', command=termcommand, justify='center')
-f2.pack(side=tk.LEFT, anchor='se')
+f2.pack(side=tk.RIGHT, anchor='se')
 
 macobutton = tk.Button(tab2, text="Use Command", command=sendcommand, justify='center')
 macobutton.pack()
