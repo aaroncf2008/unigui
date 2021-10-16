@@ -8,7 +8,7 @@
 		- New tab for the tool and its output
 	- list tools
 	- progress of tools - status
-	- Input for the host to scope
+	- Input for the host to scope (context sensivite tool management)
 	- 
 
 
