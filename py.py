@@ -10,5 +10,5 @@ json_data = json.dumps(data_dict)
 json_data = json.loads(json_data)
 allscannedports = json_data['nmaprun']["scaninfo"]["@services"]
 scannedports_list = allscannedports.split(',')
-for i in scannedports_list:
-    print(i)
+
+print(json_data['nmaprun']['host']['address']['@addr'])
