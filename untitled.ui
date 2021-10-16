@@ -71,7 +71,11 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+font: 12pt &quot;Malgun Gothic&quot;;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Terminal Input</string>
      </property>
     </widget>
    </widget>
