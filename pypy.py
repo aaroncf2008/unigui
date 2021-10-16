@@ -44,7 +44,7 @@ def setportinfo(self):
 
     h.config(text=text6)
 
-w = tk.OptionMenu(root, variable, portid22['portid'], 1, 2, command=setportinfo)
+w = tk.OptionMenu(root, variable, portid22, 1, 2, command=setportinfo)
 w.pack()
 h = tk.Label(root, text='INFO HERE')
 h.pack()
