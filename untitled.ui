@@ -28,6 +28,7 @@
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
+   <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
