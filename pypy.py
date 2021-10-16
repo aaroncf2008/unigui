@@ -7,7 +7,7 @@ import lxml
 import json
 
 root = tk.Tk()
-root.title('Tab Widget')
+root.title('INFO')
 root.geometry('500x500')
 bg = '#0E0E0E'
 root.configure(bg=bg)
@@ -24,24 +24,29 @@ json_data = json.loads(json_data)
 ports = json_data['nmaprun']['host']['ports']['port']
 
 variable = tk.IntVar()
-
+portid22 = {
+    'indexnum': 0,
+    'portid': 22,
+}
 def setportinfo(self):
     print(variable.get())
     gg = json_data['nmaprun']['host']['ports']['port'][int(variable.get())]['service']
-    #try:
-    for i in gg:
-       text6 = text6 + f'{gg[i]}\n'
-       print(text6)
-    #except:
-        #text4 = 'There is no more port data'
-    #else:
-        #pass
+    text6 = ''
+
+    try:
+        for i in gg:
+            text6 = text6 + f'{[i]} : {gg[i]}\n'
+            print(text6)
+    except:
+        text4 = 'There is no more port data'
+    else:
+        pass
 
     h.config(text=text6)
 
-w = tk.OptionMenu(root, variable, 0, 1, 2, command=setportinfo)
+w = tk.OptionMenu(root, variable, portid22['portid'], 1, 2, command=setportinfo)
 w.pack()
-h = tk.Label(root, text='meow meow bark')
+h = tk.Label(root, text='INFO HERE')
 h.pack()
 #for i in ports:
 #    # print(i['@portid'])
