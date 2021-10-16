@@ -16,8 +16,10 @@ tabControl = ttk.Notebook(root, style="BW.TLabel")
 
 tab1 = ttk.Frame(tabControl, style="BW.TLabel")
 tab2 = ttk.Frame(tabControl, style="BW.TLabel")
+tab3 = ttk.Frame(tabControl, style="BW.TLabel")
 tabControl.add(tab1, text ='Terminal')
 tabControl.add(tab2, text ='NMAP')
+tabControl.add(tab3, text ='NMAP Output')
 tabControl.pack()
 
 
@@ -182,5 +184,10 @@ f2.pack(side=tk.RIGHT, anchor='se')
 
 macobutton = tk.Button(tab2, text="Use Command", command=sendcommand, justify='center')
 macobutton.pack()
+
+#--------------------------------------------------------------------------------------------------
+
+y3 = tk.Message(tab3, text='Ports', justify='left', width=100)
+y3.pack(side=tk.LEFT, anchor='nw')
 
 root.mainloop()
