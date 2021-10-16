@@ -24,7 +24,7 @@ tab3 = ttk.Frame(tabControl, style="BW.TLabel")
 tabControl.add(tab1, text ='Terminal')
 tabControl.add(tab2, text ='NMAP')
 tabControl.add(tab3, text ='NMAP Output')
-tabControl.pack()
+tabControl.pack(anchor='nw')
 
 
 #ttk.Label(tab1, text ="He has an irl girlfriend").grid(column = 0, row = 0, padx = 30, pady = 30)  
@@ -119,7 +119,7 @@ label2.pack()
 #d5.pack()
 
 h3 = tk.Message(tab2, bg='white', width=250, text='NMAP Scan Output', justify='center')
-h3.pack(fill='both', expand=True)
+h3.pack(fill=tk.BOTH, expand=True)
 
 def cmdrun(string):     
     try:         
@@ -128,6 +128,7 @@ def cmdrun(string):
         return res.stdout    
     except:         
         print("no worko")
+
 
 
 def sendcommand():
@@ -158,8 +159,38 @@ def sendcommand():
         pass
     command = command + ' ' + e1.get()
     command = command + ' -oA ' + d1.get()
+    filename = d1.get()
     outpt = cmdrun(command)
     h3.config(text=outpt)
+    while True:
+        if 'Nmap done' in str(outpt):
+           portdata(filename)
+           break
+        else:
+           pass
+
+def portdata(file):
+    with open(f"{file}.xml") as f:
+        data_dict = xmltodict.parse(f.read())
+    f.close()
+    text1 = 'Ports'
+    json_data = json.dumps(data_dict)
+    json_data = json.loads(json_data)
+    try:
+        ports = json_data['nmaprun']['host']['ports']['port']
+    except:
+        y3.config(text='No Ports Open')
+        return 0
+    else:
+        pass
+    for i in ports:
+        portid = i['@portid']
+        print(portid)
+        text1 = text1 + f'\n {portid}' 
+        services = i['service']['@name']
+        print(services)
+        text1 = text1 + f' {services}'
+    y3.config(text=text1)
 
 #label = tk.Label(tab1, text = '', bg = bg)
 #label.grid(column=5,row=0)
@@ -209,27 +240,12 @@ macobutton.pack()
 #            text1 = text1 + f' {services}'
 #    y3.config(text=text1)
 
-def portdata():
-    with open("scan.xml") as f:
-        data_dict = xmltodict.parse(f.read())
-    f.close()
-    text1 = 'Ports'
-    json_data = json.dumps(data_dict)
-    json_data = json.loads(json_data)
-    ports = json_data['nmaprun']['host']['ports']['port']
-    for i in ports:
-        portid = i['@portid']
-        print(portid)
-        text1 = text1 + f'\n {portid}'
-        services = i['service']['@name']
-        print(services)
-        text1 = text1 + f' {services}'
-    y3.config(text=text1)
+
 
 y3 = tk.Message(tab3, text='Ports', justify='left', width=1000)
 y3.pack(side=tk.LEFT, anchor='nw')
 
-y4 = tk.Button(tab3, text='Sync Port Data', command=portdata, justify='center')
-y4.pack(side=tk.LEFT, anchor='nw')
+#y4 = tk.Button(tab3, text='Sync Port Data', command=portdata, justify='center')
+#y4.pack(side=tk.LEFT, anchor='nw')
 
 root.mainloop()
