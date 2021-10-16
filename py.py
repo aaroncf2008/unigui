@@ -8,7 +8,11 @@ with open("scan.xml") as f:
 f.close()
 json_data = json.dumps(data_dict)
 json_data = json.loads(json_data)
-allscannedports = json_data['nmaprun']["scaninfo"]["@services"]
-scannedports_list = allscannedports.split(',')
+ports = json_data['nmaprun']['host']['ports']['port']
+for i in ports:
+    print(i['@portid'])
+    for g in i['service']:
+        print(i['service'][g])
+    print('\n\n')
 
-print(json_data['nmaprun']['host']['address']['@addr'])
+

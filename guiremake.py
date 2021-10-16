@@ -1,4 +1,8 @@
 from tkinter import ttk
+from bs4 import BeautifulSoup
+import xmltodict
+import lxml
+import json
 import tkinter as tk                    
 import subprocess  
 import os
@@ -187,7 +191,45 @@ macobutton.pack()
 
 #--------------------------------------------------------------------------------------------------
 
-y3 = tk.Message(tab3, text='Ports', justify='left', width=100)
+#def portdata():
+#    with open("scan.xml") as f:
+#        data_dict = xmltodict.parse(f.read())
+#    f.close()
+#    text1 = 'Ports'
+#    json_data = json.dumps(data_dict)
+#    json_data = json.loads(json_data)
+#    ports = json_data['nmaprun']['host']['ports']['port']
+#    for i in ports:
+#        portid = i['@portid']
+#        print(portid)
+#        text1 = text1 + f'\n {portid}'
+#        for g in i['service']:
+#            services = i['service'][g]
+#            print(services)
+#            text1 = text1 + f' {services}'
+#    y3.config(text=text1)
+
+def portdata():
+    with open("scan.xml") as f:
+        data_dict = xmltodict.parse(f.read())
+    f.close()
+    text1 = 'Ports'
+    json_data = json.dumps(data_dict)
+    json_data = json.loads(json_data)
+    ports = json_data['nmaprun']['host']['ports']['port']
+    for i in ports:
+        portid = i['@portid']
+        print(portid)
+        text1 = text1 + f'\n {portid}'
+        services = i['service']['@name']
+        print(services)
+        text1 = text1 + f' {services}'
+    y3.config(text=text1)
+
+y3 = tk.Message(tab3, text='Ports', justify='left', width=1000)
 y3.pack(side=tk.LEFT, anchor='nw')
+
+y4 = tk.Button(tab3, text='Sync Port Data', command=portdata, justify='center')
+y4.pack(side=tk.LEFT, anchor='nw')
 
 root.mainloop()
