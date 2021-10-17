@@ -22,6 +22,7 @@ class MainPage(QDialog):
         self.enterfile.textChanged.connect(self.printuserin1)
         self.sendterminal.clicked.connect(self.sendterminalcommand)
         self.runnmapbutton.clicked.connect(self.runnmap)
+        self.portsinfo.currentIndexChanged.connect(self.showportinfo)
     
     global ip
     ip = ''
@@ -91,7 +92,13 @@ class MainPage(QDialog):
             print(services)
             text1 = text1 + f' {services}'
         self.portslist.setText(text1)
+        self.portinfo.Clear()
+        for i in ports:
+            self.portinfo.addItem(i['@portid'])
 
+    def showportinfo(self):
+        self.portinfo.currentIndex()
+        
 
 
     def cmdrun(string):     

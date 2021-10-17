@@ -44,7 +44,7 @@
     <string notr="true">background-color: rgb(52, 52, 52);</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -344,10 +344,10 @@ p, li { white-space: pre-wrap; }
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="portinfo">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>410</x>
        <y>10</y>
        <width>141</width>
        <height>21</height>
@@ -367,6 +367,22 @@ p, li { white-space: pre-wrap; }
        <string>Port Info</string>
       </property>
      </item>
+    </widget>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>40</y>
+       <width>256</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="placeholderText">
+      <string>Select a port above for advanced port information</string>
+     </property>
     </widget>
    </widget>
   </widget>

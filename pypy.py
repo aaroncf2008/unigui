@@ -39,7 +39,7 @@ def setportinfo(self):
             text6 = text6 + f'{gg[i]} : {gg[i]}\n'
             print(text6)
     except:
-        text4 = 'There is no more port data'
+        text6 = 'There is no more port data'
     else:
         pass
 
