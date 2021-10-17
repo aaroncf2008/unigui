@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Form(object):
     def setupUi(self, Form):
-        Form.setObjectName("Form")
+        Form.setObjectName("UniGUI")
         Form.resize(972, 636)
         self.TabSystem = QtWidgets.QTabWidget(Form)
         self.TabSystem.setGeometry(QtCore.QRect(0, 0, 1001, 641))
