@@ -1,8 +1,11 @@
 from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
+from bs4 import BeautifulSoup
 from PyQt5.uic import loadUi
 import subprocess
+import xmltodict
+import json
 import sys
 
 class MainPage(QDialog):
@@ -63,6 +66,30 @@ class MainPage(QDialog):
         #      break
         #    else:
         #       pass
+
+    def portdata(self, file):
+        with open(f"{file}.xml") as f:
+            data_dict = xmltodict.parse(f.read())
+        f.close()
+        text1 = 'Ports'
+        json_data = json.dumps(data_dict)
+        json_data = json.loads(json_data)
+        try:
+            ports = json_data['nmaprun']['host']['ports']['port']
+        except:
+            text='No Ports Open'
+            self.portslist.setText(text)
+            return 0
+        else:
+            pass
+        for i in ports:
+            portid = i['@portid']
+            print(portid)
+            text1 = text1 + f'\n {portid}' 
+            services = i['service']['@name']
+            print(services)
+            text1 = text1 + f' {services}'
+        self.portslist.setText(text1)
 
 
 

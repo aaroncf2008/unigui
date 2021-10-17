@@ -44,7 +44,7 @@
     <string notr="true">background-color: rgb(52, 52, 52);</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -74,9 +74,9 @@ p, li { white-space: pre-wrap; }
     <widget class="QPushButton" name="sendterminal">
      <property name="geometry">
       <rect>
-       <x>910</x>
+       <x>890</x>
        <y>570</y>
-       <width>81</width>
+       <width>101</width>
        <height>41</height>
       </rect>
      </property>
@@ -92,7 +92,7 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>10</x>
        <y>570</y>
-       <width>891</width>
+       <width>871</width>
        <height>41</height>
       </rect>
      </property>
@@ -311,7 +311,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
     <attribute name="title">
      <string>NMAP Output</string>
     </attribute>
-    <widget class="QTextBrowser" name="textBrowser_3">
+    <widget class="QTextBrowser" name="portslist">
      <property name="geometry">
       <rect>
        <x>10</x>
