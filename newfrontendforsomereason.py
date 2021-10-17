@@ -47,6 +47,7 @@ class MainPage(QDialog):
 
     def sendterminalcommand(self):
         comm = self.terminalinput.toPlainText()
+        comm = str(comm)
         outpt = cmdrun(comm)
         self.terminaloutput.setText(outpt)
 
