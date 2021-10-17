@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.uic import loadUi
 import sys
+
 class MainPage(QDialog):
     def __init__(self):
         super(MainPage, self).__init__()
@@ -15,7 +16,7 @@ class MainPage(QDialog):
         self.checkBox_6.stateChanged.connect(self.tacktackopenclick)
         self.enterip.textChanged.connect(self.printuserin)
         self.enterfile.textChanged.connect(self.printuserin1)
-    
+
     def printuserin(self):
         userinput = self.enterip.toPlainText()
         global ip 
@@ -67,8 +68,6 @@ class MainPage(QDialog):
             tacktackopen = ' --open'
         else:
             tacktackopen = ''
-
-
 
 app = QApplication(sys.argv)
 widget = MainPage()
