@@ -43,6 +43,7 @@ class MainPage(QDialog):
     global command
     command = ''
     global cmdrun
+    global portdata
     
     def commandsync(self):
         global command
@@ -60,12 +61,12 @@ class MainPage(QDialog):
         outpt = cmdrun(command)
         outpt = outpt.decode("utf-8")
         self.nmapoutput.setText(outpt)
-        #while True:
-        #    if 'Nmap done' in str(outpt):
-        #       portdata(filename)
-        #      break
-        #    else:
-        #       pass
+        while True:
+            if 'Nmap done' in str(outpt):
+               portdata(filename)
+               break
+            else:
+               pass
 
     def portdata(self, file):
         with open(f"{file}.xml") as f:
