@@ -14,47 +14,64 @@ class MainPage(QDialog):
         self.checkBox_4.stateChanged.connect(self.sVclick)
         self.checkBox_5.stateChanged.connect(self.sCclick)
         self.checkBox_6.stateChanged.connect(self.tacktackopenclick)
-        self.plainTextEdit.triggered.connect(self.printuserin)
+        self.enterip.textChanged.connect(self.printuserin)
+        self.enterfile.textChanged.connect(self.printuserin1)
     
     def printuserin(self):
-        userinput = self.plainTextEdit.toPlainText()
-        print(userinput)
-    
+        userinput = self.enterip.toPlainText()
+        return userinput
+
+    def printuserin1(self):
+        userinput1 = self.enterfile.toPlainText()
+        return userinput1
+
     def allportsclick(self, checked):
         if checked:
             print('-p-')
+            return 1
         else:
             print('no -p-')
+            return 0
 
     def nopingclick(self, checked):
         if checked:
             print('-Pn')
+            return 1
         else:
             print('no -Pn')
+            return 0
 
     def t4click(self, checked):
         if checked:
             print('-T4')
+            return 1
         else:
             print('no -T4')
+            return 0
     
     def sVclick(self, checked):
         if checked:
             print('-sV')
+            return 1
         else:
             print('no -sV')
+            return 0
     
     def sCclick(self, checked):
         if checked:
             print('-sC')
+            return 1
         else:
             print('no -sC')
+            return 0
 
     def tacktackopenclick(self, checked):
         if checked:
             print('--open')
+            return 1
         else:
             print('no --open')
+            return 0
 
 
 
