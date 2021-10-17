@@ -38,13 +38,13 @@
     <bool>false</bool>
    </property>
    <property name="autoFillBackground">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(52, 52, 52);</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -316,7 +316,7 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>111</width>
+       <width>141</width>
        <height>581</height>
       </rect>
      </property>
@@ -336,13 +336,37 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>850</x>
        <y>10</y>
-       <width>111</width>
+       <width>141</width>
        <height>581</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>10</y>
+       <width>141</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="currentText">
+      <string>Port Info</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Port Info</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>

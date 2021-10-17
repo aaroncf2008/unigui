@@ -28,6 +28,7 @@ portid22 = {
     'indexnum': 0,
     'portid': 22,
 }
+
 def setportinfo(self):
     print(variable.get())
     gg = json_data['nmaprun']['host']['ports']['port'][int(variable.get())]['service']
@@ -35,7 +36,7 @@ def setportinfo(self):
 
     try:
         for i in gg:
-            text6 = text6 + f'{[i]} : {gg[i]}\n'
+            text6 = text6 + f'{gg[i]} : {gg[i]}\n'
             print(text6)
     except:
         text4 = 'There is no more port data'
@@ -48,11 +49,11 @@ w = tk.OptionMenu(root, variable, portid22['portid'], 1, 2, command=setportinfo)
 w.pack()
 h = tk.Label(root, text='INFO HERE')
 h.pack()
-#for i in ports:
-#    # print(i['@portid'])
-#    for g in i['service']:
-#        # print(i['service'][g])
-#        pass
-#   # print('\n\n')
+for i in ports:
+    print(i['@portid'])
+    for g in i['service']:
+        print(i['service'][g])
+        pass
+    print('\n\n')
 
 root.mainloop()

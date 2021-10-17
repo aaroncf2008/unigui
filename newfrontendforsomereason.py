@@ -44,7 +44,7 @@ class MainPage(QDialog):
     command = ''
     global cmdrun
     global portdata
-    
+
     def commandsync(self):
         global command
         command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename}'
@@ -63,7 +63,7 @@ class MainPage(QDialog):
         self.nmapoutput.setText(outpt)
         while True:
             if 'Nmap done' in str(outpt):
-               portdata(filename)
+               portdata(self, filename)
                break
             else:
                pass
