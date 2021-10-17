@@ -3,7 +3,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.uic import loadUi
 import sys
-
 class MainPage(QDialog):
     def __init__(self):
         super(MainPage, self).__init__()
@@ -19,59 +18,55 @@ class MainPage(QDialog):
     
     def printuserin(self):
         userinput = self.enterip.toPlainText()
-        return userinput
+        global ip 
+        ip = userinput
 
     def printuserin1(self):
-        userinput1 = self.enterfile.toPlainText()
-        return userinput1
+        global filename
+        userinput = self.enterfile.toPlainText()
+        filename = userinput
 
     def allportsclick(self, checked):
+        global tackptack
         if checked:
-            print('-p-')
-            return 1
+            tackptack = ' -p-'
         else:
-            print('no -p-')
-            return 0
+            tackptack = ''
 
     def nopingclick(self, checked):
+        global noping
         if checked:
-            print('-Pn')
-            return 1
+            noping = ' -Pn'
         else:
-            print('no -Pn')
-            return 0
+            noping = ''
 
     def t4click(self, checked):
+        global t4
         if checked:
-            print('-T4')
-            return 1
+            t4 = ' -T4'
         else:
-            print('no -T4')
-            return 0
+            t4 = ''
     
     def sVclick(self, checked):
+        global sV
         if checked:
-            print('-sV')
-            return 1
+            sV = ' -sV'
         else:
-            print('no -sV')
-            return 0
+            sV = ''
     
     def sCclick(self, checked):
+        global sC
         if checked:
-            print('-sC')
-            return 1
+            sC = ' -sC'
         else:
-            print('no -sC')
-            return 0
+            sC = ''
 
     def tacktackopenclick(self, checked):
+        global tacktackopen
         if checked:
-            print('--open')
-            return 1
+            tacktackopen = ' --open'
         else:
-            print('no --open')
-            return 0
+            tacktackopen = ''
 
 
 
