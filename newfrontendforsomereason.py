@@ -96,8 +96,18 @@ class MainPage(QDialog):
         for i in ports:
             self.portinfo.addItem(i['@portid'])
 
-    def showportinfo(self):
-        self.portinfo.currentIndex()
+    def showportinfo(self,file):
+        with open(f"{file}.xml") as f:
+            data_dict = xmltodict.parse(f.read())
+        f.close()
+        json_data = json.dumps(data_dict)
+        json_data = json.loads(json_data)
+        jay = self.portinfo.currentIndex()
+        ports = json_data['nmaprun']['host']['ports']['port']
+        for g in ports[jay]['service']:
+            finaltext = str(ports[jay]['service'])
+            finaltext = finaltext + '\n' + ports[jay]['service'][g]
+        self.portinfobox.setText(finaltext)
         
 
 
