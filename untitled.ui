@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>UniGUI</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -50,13 +50,13 @@
     <attribute name="title">
      <string>Terminal</string>
     </attribute>
-    <widget class="QTextBrowser" name="textBrowser_2">
+    <widget class="QTextBrowser" name="terminaloutput">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>30</x>
        <y>20</y>
-       <width>751</width>
-       <height>341</height>
+       <width>941</width>
+       <height>521</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -71,18 +71,41 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
+    <widget class="QPushButton" name="sendterminal">
+     <property name="geometry">
+      <rect>
+       <x>914</x>
+       <y>570</y>
+       <width>81</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Send Command</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="terminalinput">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>580</y>
-       <width>971</width>
-       <height>31</height>
+       <y>570</y>
+       <width>911</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
-font: 12pt &quot;Malgun Gothic&quot;;</string>
+font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="placeholderText">
       <string>Terminal Input</string>
@@ -189,7 +212,7 @@ font: 12pt &quot;Malgun Gothic&quot;;</string>
       <string>--open</string>
      </property>
     </widget>
-    <widget class="QTextBrowser" name="textBrowser">
+    <widget class="QTextBrowser" name="commanddisplay">
      <property name="geometry">
       <rect>
        <x>300</x>

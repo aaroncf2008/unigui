@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.uic import loadUi
+import subprocess
 import sys
 
 class MainPage(QDialog):
@@ -16,16 +17,60 @@ class MainPage(QDialog):
         self.checkBox_6.stateChanged.connect(self.tacktackopenclick)
         self.enterip.textChanged.connect(self.printuserin)
         self.enterfile.textChanged.connect(self.printuserin1)
+        self.sendterminal.clicked.connect(self.sendterminalcommand)
+    
+    global ip
+    ip = ''
+    global filename
+    filename = ''
+    global tackptack
+    tackptack = ''
+    global noping
+    noping = ''
+    global t4
+    t4 = ''
+    global sV
+    sV = ''
+    global sC
+    sC = ''
+    global tacktackopen
+    tacktackopen = ''
+    global commandsync
+    global command
+    command = ''
+    global cmdrun
+    
+    def commandsync(self):
+        global command
+        command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename}'
+        self.commanddisplay.setText(command)
+
+    def sendterminalcommand(self):
+        comm = self.terminalinput.toPlainText()
+        outpt = cmdrun(comm)
+        self.terminaloutput.setText(outpt)
+
+
+    def cmdrun(string):     
+        try:         
+            res = subprocess.run(string, shell=True, capture_output=True)                 
+            print(res.stdout)
+            return res.stdout    
+        except:         
+            print("no worko")
+
 
     def printuserin(self):
         userinput = self.enterip.toPlainText()
         global ip 
         ip = userinput
+        commandsync(self)
 
     def printuserin1(self):
         global filename
         userinput = self.enterfile.toPlainText()
         filename = userinput
+        commandsync(self)
 
     def allportsclick(self, checked):
         global tackptack
@@ -33,6 +78,7 @@ class MainPage(QDialog):
             tackptack = ' -p-'
         else:
             tackptack = ''
+        commandsync(self)
 
     def nopingclick(self, checked):
         global noping
@@ -40,6 +86,7 @@ class MainPage(QDialog):
             noping = ' -Pn'
         else:
             noping = ''
+        commandsync(self)
 
     def t4click(self, checked):
         global t4
@@ -47,6 +94,7 @@ class MainPage(QDialog):
             t4 = ' -T4'
         else:
             t4 = ''
+        commandsync(self)
     
     def sVclick(self, checked):
         global sV
@@ -54,6 +102,7 @@ class MainPage(QDialog):
             sV = ' -sV'
         else:
             sV = ''
+        commandsync(self)
     
     def sCclick(self, checked):
         global sC
@@ -61,6 +110,7 @@ class MainPage(QDialog):
             sC = ' -sC'
         else:
             sC = ''
+        commandsync(self)
 
     def tacktackopenclick(self, checked):
         global tacktackopen
@@ -68,6 +118,7 @@ class MainPage(QDialog):
             tacktackopen = ' --open'
         else:
             tacktackopen = ''
+        commandsync(self)
 
 app = QApplication(sys.argv)
 widget = MainPage()
