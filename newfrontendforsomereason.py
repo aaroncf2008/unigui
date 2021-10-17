@@ -18,6 +18,7 @@ class MainPage(QDialog):
         self.enterip.textChanged.connect(self.printuserin)
         self.enterfile.textChanged.connect(self.printuserin1)
         self.sendterminal.clicked.connect(self.sendterminalcommand)
+        self.runnmapbutton.clicked.connect(self.runnmap)
     
     global ip
     ip = ''
@@ -49,7 +50,20 @@ class MainPage(QDialog):
         comm = self.terminalinput.toPlainText()
         comm = str(comm)
         outpt = cmdrun(comm)
+        outpt = outpt.decode("utf-8")
         self.terminaloutput.setText(outpt)
+
+    def runnmap(self):
+        outpt = cmdrun(command)
+        outpt = outpt.decode("utf-8")
+        self.nmapoutput.setText(outpt)
+        #while True:
+        #    if 'Nmap done' in str(outpt):
+        #       portdata(filename)
+        #      break
+        #    else:
+        #       pass
+
 
 
     def cmdrun(string):     

@@ -44,7 +44,7 @@
     <string notr="true">background-color: rgb(52, 52, 52);</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -74,7 +74,7 @@ p, li { white-space: pre-wrap; }
     <widget class="QPushButton" name="sendterminal">
      <property name="geometry">
       <rect>
-       <x>914</x>
+       <x>910</x>
        <y>570</y>
        <width>81</width>
        <height>41</height>
@@ -84,15 +84,15 @@ p, li { white-space: pre-wrap; }
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>Send Command</string>
+      <string>Run Command</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="terminalinput">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>570</y>
-       <width>911</width>
+       <width>891</width>
        <height>41</height>
       </rect>
      </property>
@@ -236,9 +236,9 @@ p, li { white-space: pre-wrap; }
     <widget class="QTextEdit" name="enterip">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>370</x>
        <y>180</y>
-       <width>131</width>
+       <width>161</width>
        <height>31</height>
       </rect>
      </property>
@@ -256,9 +256,9 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <widget class="QTextEdit" name="enterfile">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>370</x>
        <y>220</y>
-       <width>131</width>
+       <width>161</width>
        <height>31</height>
       </rect>
      </property>
@@ -268,6 +268,39 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
      <property name="placeholderText">
       <string>Enter Filename</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="runnmapbutton">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>260</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Run Command</string>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="nmapoutput">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>310</y>
+       <width>861</width>
+       <height>291</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Terminal Output</string>
      </property>
     </widget>
    </widget>
@@ -289,6 +322,13 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ports&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QTextBrowser" name="textBrowser_4">
