@@ -22,7 +22,7 @@ class MainPage(QDialog):
         self.enterfile.textChanged.connect(self.printuserin1)
         self.sendterminal.clicked.connect(self.sendterminalcommand)
         self.runnmapbutton.clicked.connect(self.runnmap)
-        self.portsinfo.currentIndexChanged.connect(self.showportinfo)
+        self.portinfo.currentIndexChanged.connect(self.showportinfo)
     
     global ip
     ip = ''
@@ -45,7 +45,6 @@ class MainPage(QDialog):
     command = ''
     global cmdrun
     global portdata
-
     def commandsync(self):
         global command
         command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename}'
@@ -92,21 +91,22 @@ class MainPage(QDialog):
             print(services)
             text1 = text1 + f' {services}'
         self.portslist.setText(text1)
-        self.portinfo.Clear()
+        self.portinfo.clear()
         for i in ports:
             self.portinfo.addItem(i['@portid'])
 
-    def showportinfo(self,file):
-        with open(f"{file}.xml") as f:
+    def showportinfo(self):
+        with open(f"{filename}.xml") as f:
             data_dict = xmltodict.parse(f.read())
         f.close()
         json_data = json.dumps(data_dict)
         json_data = json.loads(json_data)
         jay = self.portinfo.currentIndex()
-        ports = json_data['nmaprun']['host']['ports']['port']
-        for g in ports[jay]['service']:
-            finaltext = str(ports[jay]['service'])
-            finaltext = finaltext + '\n' + ports[jay]['service'][g]
+        gg = json_data['nmaprun']['host']['ports']['port'][jay]['service']
+        global finaltext
+        finaltext = ''
+        for g in gg:
+            finaltext = finaltext + f'{gg[g]} : {gg[g]}\n'
         self.portinfobox.setText(finaltext)
         
 
