@@ -38,7 +38,7 @@
     <bool>false</bool>
    </property>
    <property name="autoFillBackground">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(52, 52, 52);</string>
