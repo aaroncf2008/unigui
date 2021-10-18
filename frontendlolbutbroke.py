@@ -32,6 +32,7 @@ class MainPage(QDialog):
     global commandhistory
     with open("history.json", "r") as outfile:
         commandhistory = json.load(outfile)
+        
     global ip
     ip = ''
     global filename

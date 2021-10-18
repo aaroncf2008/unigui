@@ -51,6 +51,7 @@ class MainPage(QDialog):
     command = ''
     global cmdrun
     global portdata
+    
     def commandsync(self):
         global command
         command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename} {optionalarg}'
