@@ -13,12 +13,16 @@ class MainPage(QDialog):
         super(MainPage, self).__init__()
         loadUi('untitled.ui', self)
         self.checkBox.stateChanged.connect(self.allportsclick)
+        self.checkBox.setChecked(True)
         self.checkBox_2.stateChanged.connect(self.nopingclick)
         self.checkBox_3.stateChanged.connect(self.t4click)
+        self.checkBox_3.setChecked(True)
         self.checkBox_4.stateChanged.connect(self.sVclick)
         self.checkBox_5.stateChanged.connect(self.sCclick)
         self.checkBox_6.stateChanged.connect(self.tacktackopenclick)
+        self.checkBox_6.setChecked(True)
         self.enterip.textChanged.connect(self.printuserin)
+        self.optionalarg_2.textChanged.connect(self.printuserin2)
         self.enterfile.textChanged.connect(self.printuserin1)
         self.sendterminal.clicked.connect(self.sendterminalcommand)
         self.runnmapbutton.clicked.connect(self.runnmap)
@@ -40,6 +44,8 @@ class MainPage(QDialog):
     sC = ''
     global tacktackopen
     tacktackopen = ''
+    global optionalarg
+    optionalarg = ''
     global commandsync
     global command
     command = ''
@@ -47,7 +53,7 @@ class MainPage(QDialog):
     global portdata
     def commandsync(self):
         global command
-        command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename}'
+        command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename} {optionalarg}'
         self.commanddisplay.setText(command)
 
     def sendterminalcommand(self):
@@ -107,7 +113,7 @@ class MainPage(QDialog):
         finaltext = ''
         try:
             for g in gg:
-                finaltext = finaltext + f'{gg[g]} : {gg[g]}\n'
+                finaltext = finaltext + f'{gg[g]}\n'
         except:
             finaltext = 'There is no advanced port data.'
         else:
@@ -135,6 +141,12 @@ class MainPage(QDialog):
         global filename
         userinput = self.enterfile.toPlainText()
         filename = userinput
+        commandsync(self)
+
+    def printuserin2(self):
+        global optionalarg
+        userinput = self.optionalarg_2.toPlainText()
+        optionalarg = userinput
         commandsync(self)
 
     def allportsclick(self, checked):
