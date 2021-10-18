@@ -105,8 +105,13 @@ class MainPage(QDialog):
         gg = json_data['nmaprun']['host']['ports']['port'][jay]['service']
         global finaltext
         finaltext = ''
-        for g in gg:
-            finaltext = finaltext + f'{gg[g]} : {gg[g]}\n'
+        try:
+            for g in gg:
+                finaltext = finaltext + f'{gg[g]} : {gg[g]}\n'
+        except:
+            finaltext = 'There is no advanced port data.'
+        else:
+            pass
         self.portinfobox.setText(finaltext)
         
 
