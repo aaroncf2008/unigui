@@ -88,7 +88,6 @@ class MainPage(QDialog):
                     pass
         else:
             pass
-        print(type(commandhistory))
         commandhistory.insert(0,comm)
 
         f = open('history.json', 'w')
@@ -97,8 +96,9 @@ class MainPage(QDialog):
         
         if len(commandhistory) > 5:
             commandhistory.pop()
-            with open("history.json", "w") as outfile:
-                json.dump(commandhistory, outfile)
+            f = open("history.json", "w")
+            f.write(json.dumps(commandhistory))
+            f.close()
         else:
             pass 
 
@@ -116,6 +116,7 @@ class MainPage(QDialog):
         comm = self.terminalinput.toPlainText()
         comm = str(comm)
         commhistoryvar = comm
+        print(commhistoryvar)
         commandhistoryload(self)
         outpt = cmdrun(comm)
         outpt = outpt.decode("utf-8")
