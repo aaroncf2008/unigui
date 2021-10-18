@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from PyQt5.uic import loadUi
 import subprocess
 import xmltodict
+import random
 import json
 import sys
 
@@ -27,7 +28,10 @@ class MainPage(QDialog):
         self.sendterminal.clicked.connect(self.sendterminalcommand)
         self.runnmapbutton.clicked.connect(self.runnmap)
         self.portinfo.currentIndexChanged.connect(self.showportinfo)
-    
+
+    global commandhistory
+    with open("history.json", "r") as outfile:
+        commandhistory = json.load(outfile)
     global ip
     ip = ''
     global filename
@@ -50,7 +54,59 @@ class MainPage(QDialog):
     global command
     command = ''
     global cmdrun
+    global comm
+    comm = ''
     global portdata
+    global commandhistoryload
+    global currentcommand
+    global commhistoryvar
+    commhistoryvar = ''
+    def commandhistoryload(self):
+        x = 0
+        if x == 0:
+            blob = commhistoryvar
+            print(blob)
+            for i in commandhistory:
+                x = x + 1
+                if x == 1:
+                    self.button1.setText(i)
+                    self.button1.setEnabled(True)
+                elif x == 2:
+                    self.button2.setText(i)
+                    self.button2.setEnabled(True)
+                elif x == 3:
+                    self.button3.setText(i)
+                    self.button3.setEnabled(True)
+                elif x == 4:
+                    self.button4.setText(i)
+                    self.button4.setEnabled(True)
+                elif x == 5:
+                    self.button5.setText(i)
+                    self.button5.setEnabled(True)
+                else:
+                    print('Too many..')
+                    pass
+        else:
+            pass
+        print(type(commandhistory))
+        commandhistory.insert(0,comm)
+
+        f = open('history.json', 'w')
+        f.write(json.dumps(commandhistory))
+        f.close()
+        
+        if len(commandhistory) > 5:
+            commandhistory.pop()
+            with open("history.json", "w") as outfile:
+                json.dump(commandhistory, outfile)
+        else:
+            pass 
+
+    def pushbutton(self):
+        listttt = ['a','b','c','d','e']
+        g = random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt)
+        self.button1.setText(g)
+
     def commandsync(self):
         global command
         command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename} {optionalarg}'
@@ -59,6 +115,8 @@ class MainPage(QDialog):
     def sendterminalcommand(self):
         comm = self.terminalinput.toPlainText()
         comm = str(comm)
+        commhistoryvar = comm
+        commandhistoryload(self)
         outpt = cmdrun(comm)
         outpt = outpt.decode("utf-8")
         self.terminaloutput.setText(outpt)
