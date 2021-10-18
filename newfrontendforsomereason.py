@@ -5,8 +5,13 @@ from bs4 import BeautifulSoup
 from PyQt5.uic import loadUi
 import subprocess
 import xmltodict
+import random
 import json
 import sys
+
+f = open('history.json', 'w')
+global commandhistory
+commandhistory = json.load(f) 
 
 class MainPage(QDialog):
     def __init__(self):
@@ -51,6 +56,12 @@ class MainPage(QDialog):
     command = ''
     global cmdrun
     global portdata
+    
+    def pushbutton(self):
+        listttt = ['a','b','c','d','e']
+        g = random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt)
+        self.button1.setText(g)
+
     def commandsync(self):
         global command
         command = f'nmap{sV}{sC}{t4}{tackptack}{tacktackopen}{noping} {ip} -oA {filename} {optionalarg}'

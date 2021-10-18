@@ -55,7 +55,7 @@
       <rect>
        <x>30</x>
        <y>20</y>
-       <width>941</width>
+       <width>821</width>
        <height>521</height>
       </rect>
      </property>
@@ -109,6 +109,22 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="placeholderText">
       <string>Terminal Input</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="button1">
+     <property name="geometry">
+      <rect>
+       <x>870</x>
+       <y>40</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
      </property>
     </widget>
    </widget>
