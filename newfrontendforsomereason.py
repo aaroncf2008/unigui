@@ -9,10 +9,6 @@ import random
 import json
 import sys
 
-f = open('history.json', 'w')
-global commandhistory
-commandhistory = json.load(f) 
-
 class MainPage(QDialog):
     def __init__(self):
         super(MainPage, self).__init__()
@@ -33,6 +29,12 @@ class MainPage(QDialog):
         self.runnmapbutton.clicked.connect(self.runnmap)
         self.portinfo.currentIndexChanged.connect(self.showportinfo)
     
+    
+    f = open('history.json', 'w')
+    global commandhistory
+    commandhistory = json.load(f) 
+    f.close()
+
     global ip
     ip = ''
     global filename
@@ -55,8 +57,28 @@ class MainPage(QDialog):
     global command
     command = ''
     global cmdrun
+    global comm
+    comm = ''
     global portdata
-    
+    global commandhistoryload
+
+    def commandhistoryload():
+        x = 0
+        if True:
+            blob = comm
+            for i in commandhistory:
+                x = x + 1
+                blobb = blobb + f'{x}. {i}\n'
+                
+        commandhistory.insert(0,blob)
+
+        if len(commandhistory) > 5:
+            commandhistory.pop()
+            f = open('history.json', 'w')
+            f.write(json.dump(commandhistory))
+        else:
+            pass 
+
     def pushbutton(self):
         listttt = ['a','b','c','d','e']
         g = random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt)
@@ -73,6 +95,7 @@ class MainPage(QDialog):
         outpt = cmdrun(comm)
         outpt = outpt.decode("utf-8")
         self.terminaloutput.setText(outpt)
+        commandhistoryload()
 
     def runnmap(self):
         outpt = cmdrun(command)
