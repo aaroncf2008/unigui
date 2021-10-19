@@ -93,7 +93,6 @@ class MainPage(QDialog):
 
         f = open('history.json', 'w')
         f.write(json.dumps(commandhistory))
-        f.close()
         
         if len(commandhistory) > 5:
             commandhistory.pop()
@@ -101,7 +100,7 @@ class MainPage(QDialog):
             f.write(json.dumps(commandhistory))
             f.close()
         else:
-            pass 
+            f.close()
 
     def pushbutton(self):
         listttt = ['a','b','c','d','e']
