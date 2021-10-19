@@ -64,8 +64,10 @@ class MainPage(QDialog):
     commhistoryvar = ''
     def commandhistoryload(self):
         x = 0
+        print(commhistoryvar)
+        blob = commhistoryvar
+        print(blob)
         if x == 0:
-            blob = commhistoryvar
             print(blob)
             for i in commandhistory:
                 x = x + 1
@@ -89,13 +91,17 @@ class MainPage(QDialog):
                     pass
         else:
             pass
-        commandhistory.insert(0,comm)
 
+        print(blob)
+        commandhistory.insert(0,blob)
+        print(commandhistory)
         f = open('history.json', 'w')
         f.write(json.dumps(commandhistory))
         
         if len(commandhistory) > 5:
+            print(commandhistory)
             commandhistory.pop()
+            print(commandhistory)
             f = open("history.json", "w")
             f.write(json.dumps(commandhistory))
             f.close()
