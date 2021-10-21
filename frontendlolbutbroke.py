@@ -60,15 +60,10 @@ class MainPage(QDialog):
     global portdata
     global commandhistoryload
     global currentcommand
-    global commhistoryvar
-    commhistoryvar = ''
+    
     def commandhistoryload(self):
         x = 0
-        print(commhistoryvar)
-        blob = commhistoryvar
-        print(blob)
         if x == 0:
-            print(blob)
             for i in commandhistory:
                 x = x + 1
                 if x == 1:
@@ -91,22 +86,17 @@ class MainPage(QDialog):
                     pass
         else:
             pass
-
-        print(blob)
-        commandhistory.insert(0,blob)
         print(commandhistory)
         f = open('history.json', 'w')
-        f.write(json.dumps(commandhistory))
         
         if len(commandhistory) > 5:
             print(commandhistory)
             commandhistory.pop()
             print(commandhistory)
-            f = open("history.json", "w")
             f.write(json.dumps(commandhistory))
-            f.close()
         else:
-            f.close()
+            f.write(json.dumps(commandhistory))
+        f.close()
 
     def pushbutton(self):
         listttt = ['a','b','c','d','e']
@@ -120,6 +110,7 @@ class MainPage(QDialog):
 
     def sendterminalcommand(self):
         comm = self.terminalinput.toPlainText()
+        commandhistory.insert(0,comm)
         comm = str(comm)
         commhistoryvar = comm
         print(commhistoryvar)
