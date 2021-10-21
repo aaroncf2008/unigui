@@ -28,6 +28,11 @@ class MainPage(QDialog):
         self.sendterminal.clicked.connect(self.sendterminalcommand)
         self.runnmapbutton.clicked.connect(self.runnmap)
         self.portinfo.currentIndexChanged.connect(self.showportinfo)
+        self.button1.clicked.connect(self.button1commandset)
+        self.button2.clicked.connect(self.button2commandset)
+        self.button3.clicked.connect(self.button3commandset)
+        self.button4.clicked.connect(self.button4commandset)
+        self.button5.clicked.connect(self.button5commandset)
 
     global commandhistory
     with open("history.json", "r") as outfile:
@@ -98,6 +103,26 @@ class MainPage(QDialog):
             f.write(json.dumps(commandhistory))
         f.close()
 
+    def button1commandset(self):
+        buttontext = self.button1.text()
+        self.terminalinput.setText(buttontext)
+
+    def button2commandset(self):
+        buttontext = self.button2.text()
+        self.terminalinput.setText(buttontext)
+
+    def button3commandset(self):
+        buttontext = self.button3.text()
+        self.terminalinput.setText(buttontext)
+
+    def button4commandset(self):
+        buttontext = self.button4.text()
+        self.terminalinput.setText(buttontext)
+
+    def button5commandset(self):
+        buttontext = self.button5.text()
+        self.terminalinput.setText(buttontext)
+
     def pushbutton(self):
         listttt = ['a','b','c','d','e']
         g = random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt)
@@ -117,6 +142,7 @@ class MainPage(QDialog):
         commandhistoryload(self)
         outpt = cmdrun(comm)
         outpt = outpt.decode("utf-8")
+        self.terminalinput.setText('')
         self.terminaloutput.setText(outpt)
 
     def runnmap(self):
