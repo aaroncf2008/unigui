@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtWidgets import QApplication, QDialog, QWidget, QListWidget, QHBoxLayout,QListWidgetItem
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from bs4 import BeautifulSoup
@@ -13,6 +13,7 @@ class MainPage(QDialog):
     def __init__(self):
         super(MainPage, self).__init__()
         loadUi('untitled.ui', self)
+        self.listWidget_2.setSpacing(3)
         self.checkBox.stateChanged.connect(self.allportsclick)
         self.checkBox.setChecked(True)
         self.checkBox_2.stateChanged.connect(self.nopingclick)
@@ -33,6 +34,8 @@ class MainPage(QDialog):
         self.button3.clicked.connect(self.button3commandset)
         self.button4.clicked.connect(self.button4commandset)
         self.button5.clicked.connect(self.button5commandset)
+        l1 = QListWidgetItem("Ferox Buster")
+        self.listWidget.insertItem(1, l1)
 
     global commandhistory
     with open("history.json", "r") as outfile:
@@ -71,7 +74,7 @@ class MainPage(QDialog):
     global portdata
     global commandhistoryload
     global currentcommand
-    
+
     def commandhistoryload(self):
         x = 0
         if x == 0:
@@ -193,6 +196,7 @@ class MainPage(QDialog):
         self.portinfo.clear()
         for i in ports:
             self.portinfo.addItem(i['@portid'])
+            self.listWidget_2.addItem(f"{i['@portid']} {i['service']['@name']}")
 
     def showportinfo(self):
         with open(f"{filename}.xml") as f:
