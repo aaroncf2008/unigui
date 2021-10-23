@@ -38,6 +38,12 @@ class MainPage(QDialog):
     with open("history.json", "r") as outfile:
         commandhistory = json.load(outfile)
         
+    
+    
+    
+    
+    
+    #nmap
     global ip
     ip = ''
     global filename
@@ -102,7 +108,12 @@ class MainPage(QDialog):
         else:
             f.write(json.dumps(commandhistory))
         f.close()
-
+    
+    
+    
+    
+    
+    #nmap
     def button1commandset(self):
         buttontext = self.button1.text()
         self.terminalinput.setText(buttontext)
