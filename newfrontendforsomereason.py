@@ -196,7 +196,7 @@ class MainPage(QDialog):
         self.portinfo.clear()
         for i in ports:
             self.portinfo.addItem(i['@portid'])
-            self.listWidget_2.addItem(f"{i['@portid']} {i['service']['@name']}")
+            self.listWidget_2.addItem(f"{i['@portid']} | {i['service']['@name']}")
 
     def showportinfo(self):
         with open(f"{filename}.xml") as f:

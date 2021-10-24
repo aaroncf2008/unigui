@@ -41,13 +41,13 @@
     <bool>false</bool>
    </property>
    <property name="autoFillBackground">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(52, 52, 52);</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -612,6 +612,9 @@ p, li { white-space: pre-wrap; }
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
      <property name="dragEnabled">
       <bool>true</bool>
      </property>
@@ -682,8 +685,17 @@ p, li { white-space: pre-wrap; }
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
-     <property name="dragEnabled">
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
+     <property name="showDropIndicator" stdset="0">
       <bool>false</bool>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
      </property>
      <property name="dragDropMode">
       <enum>QAbstractItemView::DragOnly</enum>
@@ -695,7 +707,7 @@ p, li { white-space: pre-wrap; }
       <enum>Qt::ElideMiddle</enum>
      </property>
      <property name="resizeMode">
-      <enum>QListView::Adjust</enum>
+      <enum>QListView::Fixed</enum>
      </property>
      <property name="spacing">
       <number>3</number>
