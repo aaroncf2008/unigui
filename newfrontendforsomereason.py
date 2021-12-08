@@ -8,6 +8,7 @@ import xmltodict
 import random
 import json
 import sys
+import os
 
 class MainPage(QDialog):
     def __init__(self):
@@ -34,6 +35,7 @@ class MainPage(QDialog):
         self.button3.clicked.connect(self.button3commandset)
         self.button4.clicked.connect(self.button4commandset)
         self.button5.clicked.connect(self.button5commandset)
+        #self.pingbutton.clicked.connect(self.pingbutton)
         l1 = QListWidgetItem("Ferox Buster")
         self.listWidget.insertItem(1, l1)
 
@@ -74,7 +76,7 @@ class MainPage(QDialog):
     global portdata
     global commandhistoryload
     global currentcommand
-
+    
     def commandhistoryload(self):
         x = 0
         if x == 0:
