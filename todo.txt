@@ -1,0 +1,6 @@
+make program useable
+make key system
+find a way to prevent pirating (as best as we can)
+make it work with vim keybindings
+polish GUI
+add plugins

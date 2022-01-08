@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from PyQt5.uic import loadUi
 import subprocess
 import xmltodict
-import random
+#import random
 import json
 import sys
 import os
@@ -14,6 +14,7 @@ class MainPage(QDialog):
     def __init__(self):
         super(MainPage, self).__init__()
         loadUi('untitled.ui', self)
+        commandhistoryload(self)
         self.listWidget_2.setSpacing(3)
         self.checkBox.stateChanged.connect(self.allportsclick)
         self.checkBox.setChecked(True)
@@ -27,7 +28,11 @@ class MainPage(QDialog):
         self.enterip.textChanged.connect(self.printuserin)
         self.optionalarg_2.textChanged.connect(self.printuserin2)
         self.enterfile.textChanged.connect(self.printuserin1)
-        self.sendterminal.clicked.connect(self.sendterminalcommand)
+        #self.terminalinput.returnPressed.connect(self.sendterminalcommand)
+
+        self.terminalinput.installEventFilter(self)
+
+        self.sendterminal.clicked.connect(self.terminalrun)
         self.runnmapbutton.clicked.connect(self.runnmap)
         self.portinfo.currentIndexChanged.connect(self.showportinfo)
         self.button1.clicked.connect(self.button1commandset)
@@ -35,6 +40,8 @@ class MainPage(QDialog):
         self.button3.clicked.connect(self.button3commandset)
         self.button4.clicked.connect(self.button4commandset)
         self.button5.clicked.connect(self.button5commandset)
+        self.darkmode.stateChanged.connect(self.darkmodefunc)
+
         #self.pingbutton.clicked.connect(self.pingbutton)
         l1 = QListWidgetItem("Ferox Buster")
         self.listWidget.insertItem(1, l1)
@@ -68,6 +75,8 @@ class MainPage(QDialog):
     global optionalarg
     optionalarg = ''
     global commandsync
+    global commandhistoryvariable
+    commandhistoryvariable = ""
     global command
     command = ''
     global cmdrun
@@ -76,7 +85,91 @@ class MainPage(QDialog):
     global portdata
     global commandhistoryload
     global currentcommand
-    
+    global scrollbottom
+    global sendterminalcommand
+
+    def eventFilter(self, obj, event):
+        if event.type() == QtCore.QEvent.KeyPress and obj is self.terminalinput:
+            if event.key() == QtCore.Qt.Key_Return and self.terminalinput.hasFocus():
+                sendterminalcommand(self)
+                scrollbottom(self)
+        return super().eventFilter(obj, event)
+
+    def terminalrun(self):
+        sendterminalcommand(self)
+
+    def scrollbottom(self):
+        try:
+            verScrollBar = self.verticalScrollBar()
+        except:
+            return
+        else:
+            verScrollBar.setValue(verScrollBar.maximum())
+
+    def darkmodefunc(self, checked):
+        if checked:
+            self.tabsystem.setStyleSheet("background-color: rgb(19, 19, 19);\ncolor: rgb(0, 0, 0);")
+            self.enterip.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.nmapoutput.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.enterfile.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.optionalarg_2.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.commanddisplay.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.runnmapbutton.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.checkBox.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.checkBox_2.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.checkBox_3.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.checkBox_4.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.checkBox_5.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.checkBox_6.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.portslist.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.portinfobox.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.textBrowser_4.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.portinfo.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.textBrowser_5.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.listWidget.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.listWidget_2.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.terminaloutput.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.terminalinput.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.sendterminal.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.button1.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.button2.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.button3.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.button4.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.button5.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+            self.darkmode.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(255, 255, 255);")
+        else:
+            self.tabsystem.setStyleSheet("background-color: rgb(52, 52, 52);\ncolor: rgb(0, 0, 0);")
+            self.nmapoutput.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.enterip.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.enterfile.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.optionalarg_2.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.commanddisplay.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.runnmapbutton.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.checkBox.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.checkBox_2.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.checkBox_3.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.checkBox_4.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.checkBox_5.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.checkBox_6.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.portslist.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.portinfobox.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.textBrowser_4.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.portinfo.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.textBrowser_5.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.listWidget.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.listWidget_2.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.terminaloutput.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.terminalinput.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.sendterminal.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.button1.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.button2.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.button3.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.button4.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.button5.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+            self.darkmode.setStyleSheet("background-color: rgb(255, 255, 255);\ncolor: rgb(0, 0, 0);")
+
+
+
     def commandhistoryload(self):
         x = 0
         if x == 0:
@@ -114,10 +207,7 @@ class MainPage(QDialog):
             f.write(json.dumps(commandhistory))
         f.close()
     
-    
-    
-    
-    
+
     #nmap
     def button1commandset(self):
         buttontext = self.button1.text()
@@ -139,10 +229,10 @@ class MainPage(QDialog):
         buttontext = self.button5.text()
         self.terminalinput.setText(buttontext)
 
-    def pushbutton(self):
-        listttt = ['a','b','c','d','e']
-        g = random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt)
-        self.button1.setText(g)
+    #def pushbutton(self):
+    #    listttt = ['a','b','c','d','e']
+    #   g = random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt) + random.choice(listttt)
+    #   self.button1.setText(g)
 
     def commandsync(self):
         global command
@@ -150,16 +240,22 @@ class MainPage(QDialog):
         self.commanddisplay.setText(command)
 
     def sendterminalcommand(self):
+        global commandhistoryvariable
         comm = self.terminalinput.toPlainText()
+        if str(comm) == 'cls' or str(comm) == 'clear':
+            commandhistoryvariable == ''
+            self.terminaloutput.setText('')
+            self.terminalinput.setText('')
+            return
         commandhistory.insert(0,comm)
         comm = str(comm)
-        commhistoryvar = comm
-        print(commhistoryvar)
         commandhistoryload(self)
         outpt = cmdrun(comm)
         outpt = outpt.decode("utf-8")
+        commandhistoryvariable = commandhistoryvariable + '\n' + outpt
         self.terminalinput.setText('')
-        self.terminaloutput.setText(outpt)
+        self.terminaloutput.setText(commandhistoryvariable)
+        scrollbottom(self)
 
     def runnmap(self):
         outpt = cmdrun(command)
@@ -184,6 +280,7 @@ class MainPage(QDialog):
         except:
             text='No Ports Open'
             self.portslist.setText(text)
+            scrollbottom(self)
             return 0
         else:
             pass

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1001</width>
+    <width>997</width>
     <height>648</height>
    </rect>
   </property>
@@ -24,15 +24,27 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1001</width>
-     <height>651</height>
+     <width>1051</width>
+     <height>671</height>
     </rect>
    </property>
    <property name="sizePolicy">
     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
+     <horstretch>10</horstretch>
+     <verstretch>10</verstretch>
     </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1051</width>
+     <height>671</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1051</width>
+     <height>671</height>
+    </size>
    </property>
    <property name="cursor">
     <cursorShape>ArrowCursor</cursorShape>
@@ -49,7 +61,7 @@ color: rgb(0, 0, 0);
 </string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -196,39 +208,34 @@ p, li { white-space: pre-wrap; }
       <string/>
      </property>
     </widget>
-    <widget class="QTextBrowser" name="terminaloutput">
+    <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>8</y>
-       <width>789</width>
-       <height>541</height>
+       <y>10</y>
+       <width>791</width>
+       <height>551</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QTextBrowser" name="terminaloutput">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
 font: 16pt &quot;MS Shell Dlg 2&quot;;
 </string>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-    <zorder>terminalinput</zorder>
-    <zorder>sendterminal</zorder>
-    <zorder>button1</zorder>
-    <zorder>button3</zorder>
-    <zorder>button2</zorder>
-    <zorder>button4</zorder>
-    <zorder>button5</zorder>
-    <zorder>terminaloutput</zorder>
    </widget>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -242,6 +249,12 @@ p, li { white-space: pre-wrap; }
        <width>70</width>
        <height>17</height>
       </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>70</width>
+       <height>17</height>
+      </size>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -258,6 +271,12 @@ p, li { white-space: pre-wrap; }
        <width>70</width>
        <height>17</height>
       </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>70</width>
+       <height>17</height>
+      </size>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -339,6 +358,12 @@ p, li { white-space: pre-wrap; }
        <height>31</height>
       </rect>
      </property>
+     <property name="maximumSize">
+      <size>
+       <width>661</width>
+       <height>31</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
 font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -354,7 +379,7 @@ p, li { white-space: pre-wrap; }
       <string>nmap</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="enterip">
+    <widget class="QTextEdit" name="enterfile">
      <property name="geometry">
       <rect>
        <x>380</x>
@@ -363,31 +388,11 @@ p, li { white-space: pre-wrap; }
        <height>31</height>
       </rect>
      </property>
-     <property name="mouseTracking">
-      <bool>false</bool>
-     </property>
-     <property name="toolTip">
-      <string>Enter Target IP (10.10.10.10)</string>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
-     </property>
-     <property name="placeholderText">
-      <string>Enter IP</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="enterfile">
-     <property name="geometry">
-      <rect>
-       <x>380</x>
-       <y>120</y>
+     <property name="maximumSize">
+      <size>
        <width>161</width>
        <height>31</height>
-      </rect>
+      </size>
      </property>
      <property name="toolTip">
       <string>Enter Filename (scan, data)</string>
@@ -409,11 +414,55 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
        <height>31</height>
       </rect>
      </property>
+     <property name="maximumSize">
+      <size>
+       <width>131</width>
+       <height>31</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>Run Command</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="enterip">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>120</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>161</width>
+       <height>31</height>
+      </size>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Enter Target IP (10.10.10.10)</string>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Enter IP</string>
      </property>
     </widget>
     <widget class="QTextBrowser" name="nmapoutput">
@@ -424,6 +473,12 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
        <width>861</width>
        <height>361</height>
       </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>861</width>
+       <height>361</height>
+      </size>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
@@ -441,6 +496,18 @@ font: 18pt &quot;MS Shell Dlg 2&quot;;</string>
        <width>161</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>161</width>
+       <height>31</height>
+      </size>
      </property>
      <property name="toolTip">
       <string>Enter NMAP Optional Arguments</string>
