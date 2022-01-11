@@ -246,12 +246,12 @@ class MainPage(QDialog):
             commandhistoryvariable == ''
             self.terminaloutput.setText('')
             self.terminalinput.setText('')
+            #commandhistory.insert(0,comm)
+            #commandhistoryload(self)
             return
         commandhistory.insert(0,comm)
-        comm = str(comm)
         commandhistoryload(self)
-        outpt = cmdrun(comm)
-        outpt = outpt.decode("utf-8")
+        outpt = cmdrun(str(comm)).decode("utf-8")
         commandhistoryvariable = commandhistoryvariable + '\n' + outpt
         self.terminalinput.setText('')
         self.terminaloutput.setText(commandhistoryvariable)
